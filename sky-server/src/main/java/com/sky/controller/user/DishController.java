@@ -41,12 +41,17 @@ public class DishController {
         //查询redis中是否存在菜品数据
         List<DishVO> list = (List<DishVO>) redisTemplate.opsForValue().get(key);
 
+        if (list != null) {
+            return Result.success(list);
+        }
+
 
         Dish dish = new Dish();
         dish.setCategoryId(categoryId);
         dish.setStatus(StatusConstant.ENABLE);//查询起售中的菜品
 
-        List<DishVO> list = dishService.listWithFlavor(dish);
+        list = dishService.listWithFlavor(dish);
+        redisTemplate.opsForValue().set(key, list);
 
         return Result.success(list);
     }
