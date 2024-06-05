@@ -39,7 +39,7 @@ public class DishController {
         String key = "dish_id" + categoryId;
 
         //查询redis中是否存在菜品数据
-        Object o = redisTemplate.opsForValue().get(key);
+        List<DishVO> list = (List<DishVO>) redisTemplate.opsForValue().get(key);
 
 
         Dish dish = new Dish();
