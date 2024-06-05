@@ -21,7 +21,7 @@ public interface ShoppingCartMapper {
             "(#{name},#{image},#{userId},#{dishId},#{setmealId},#{dishFlavor},#{amount},#{createTime})")
     void insert(ShoppingCart shoppingCart);
 
-
+    //
     @Delete("delete from sky_take_out.shopping_cart where user_id = #{userId};")
     void deleteByUserId(Long userId);
 }
